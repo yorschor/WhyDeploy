@@ -1,0 +1,28 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:WhyDeployDesktopClient.ViewModels"
+             xmlns:avalonia="clr-namespace:SpacedGridControl.Avalonia;assembly=SpacedGridControl.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="WhyDeployDesktopClient.Views.SettingsPageView"
+             x:DataType="viewModels:SettingsPageViewModel">
+
+    <Control.Styles>
+        <StyleInclude Source="../Styles/BorderStyles.axaml" />
+        <StyleInclude Source="../Styles/LabelStyles.axaml" />
+    </Control.Styles>
+    <avalonia:SpacedGrid RowDefinitions="Auto,*" Margin="20">
+        <Label Content="Settings" Classes="H1" />
+        <Border Grid.Row="1" Classes="NiceBorder">
+            <Border Classes="NiceBorder" MaxHeight="40" MaxWidth="300">
+                <!-- <popUp:StoragePathChooser -->
+                <!--     ChooserTitleName="Choose App Storage" -->
+                <!--     PathInputTextWatermark="File Path" -->
+                <!--     PathInputLabelName="Choose AppStorage" -->
+                <!--     PathType="File" -->
+                <!--     CurrentPath="{Binding AppStoragePath, Mode=TwoWay}" /> -->
+            </Border>
+        </Border>
+    </avalonia:SpacedGrid>
+</UserControl>

@@ -1,0 +1,31 @@
+name: Dev Pipeline
+
+on:
+  push:
+    branches: 
+      - 'trunk'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to build and test'
+        required: true
+        default: 'trunk'
+
+jobs:
+  build-test: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch || github.ref }}
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+      - name: Use Cached NuGet packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+      - name: Build
+        run: dotnet build -c Debug
+      - name: Test
+        run: dotnet test

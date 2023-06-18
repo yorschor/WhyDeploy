@@ -1,0 +1,52 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:avalonia="clr-namespace:SpacedGridControl.Avalonia;assembly=SpacedGridControl.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="400"
+             x:Class="WhyDeployDesktopClient.UserControls.DeployableMod">
+
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/BorderStyles.axaml" />
+        <Style Selector="Border.NiceBorder Label">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="Arial Rounded MT" />
+        </Style>
+    </UserControl.Styles>
+
+    <Expander>
+        <Expander.Header>
+            <avalonia:SpacedGrid ColumnDefinitions="*, *, *" ShowGridLines="True">
+                <Rectangle Fill="Aqua"/>
+                <Rectangle Grid.Column="1" Fill="Red"/>
+                <Rectangle Grid.Column="2" Fill="Green"/>
+                
+            <!-- <Border Classes="NiceBorder" Background="Transparent" MinHeight="50" HorizontalAlignment="Stretch"> -->
+               
+                    <!-- <Border Grid.Column="0" Classes="NiceBorder"> -->
+                    <!--     <DockPanel Name="InnerHorizontal"> -->
+                    <!--         <Border CornerRadius="5" ClipToBounds="True" DockPanel.Dock="Left"> -->
+                    <!--             <Image Name="ModLogo" Source="../Assets/whyDeploy-logo.ico" /> -->
+                    <!--         </Border> -->
+                    <!--         <Label Name="ModNameLabel" -->
+                    <!--                Content="{Binding ModName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type userControls:DeployableMod}}}" -->
+                    <!--                DockPanel.Dock="Left" -->
+                    <!--                HorizontalContentAlignment="Center" -->
+                    <!--                VerticalContentAlignment="Center" /> -->
+                    <!--     </DockPanel> -->
+                    <!-- </Border> -->
+                    <!-- <Border Grid.Column="2" Classes="NiceBorder" Width="{Binding $self.Height}"> -->
+                    <!--     <Button Background="Gray"> -->
+                    <!--          -->
+                    <!--         ~1~ <fluentIcons1:FluentIcon Icon="ArrowRight12Filled" Height="{Binding $self.Width}" /> @1@ -->
+                    <!--     </Button> -->
+                    <!-- </Border> -->
+                </avalonia:SpacedGrid>
+            <!-- </Border> -->
+        </Expander.Header>
+        <Expander.Content>
+            <Button Content="TestHello"></Button>
+        </Expander.Content>
+    </Expander>
+</UserControl>

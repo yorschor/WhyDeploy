@@ -1,0 +1,27 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Panel Background="Gray" Width="300" Height="200">
+            <Border Classes="NiceBorder" Padding="20">
+                <!-- Add Controls for Previewer Here -->
+                <StackPanel>
+                    <Button Content="Button1" />
+                    <Button Content="Button2" />
+                </StackPanel>
+
+            </Border>
+        </Panel>
+    </Design.PreviewWith>
+
+
+    <Style Selector="Border.NiceBorder">
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="BorderThickness" Value="0.5" />
+        <Setter Property="BorderBrush" Value="DimGray" />
+    </Style>
+    <Style Selector="Border.NiceBorder > Control">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+</Styles>

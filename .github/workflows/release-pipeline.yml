@@ -1,0 +1,49 @@
+name: Release Pipeline
+on:
+  push:
+    branches:
+      - 'release/*'
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v3
+        with:
+          source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set Version
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/}
+            VERSION=${VERSION#v}  # Strip the leading 'v' from the version
+            echo "VERSION=$VERSION" >> $GITHUB_ENV
+          else
+            echo "VERSION=" >> $GITHUB_ENV
+          fi
+
+      - name: Build
+        run: |
+          if [ -z "$VERSION" ]; then
+            dotnet build -c Release
+          else
+            dotnet build -c Release -p:Version=$VERSION -p:FileVersion=$VERSION -p:AssemblyVersion=$VERSION -p:InformationalVersion=$VERSION
+          fi
+      - name: Test
+        run: dotnet test
+      - name: Pack Projects
+        run: |
+          dotnet pack src/WDCore/WDCore.csproj -c Release -o nupkgs
+          dotnet pack src/WDUtility/WDUtility.csproj -c Release -o nupkgs
+      - name: Cache nuget pkgs
+        id: cache-nuget
+        uses: actions/cache@v3
+  
+      - name: Publish NuGet Packages
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          dotnet nuget push "nupkgs/*.nupkg" --source "github"

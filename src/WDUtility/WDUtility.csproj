@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>AnyCPU;x64</Platforms>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>0.2.0</Version>
+        <Authors>Ekkehard C. Damisch</Authors>
+        <Title>WhyDeploy Utility</Title>
+        <Description>A collection of utlity classes used in the WhyDeploy</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json"/>
+        <PackageReference Include="NLog"/>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,42 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:userControls="clr-namespace:WhyDeployDesktopClient.UserControls"
+             xmlns:viewModels="clr-namespace:WhyDeployDesktopClient.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="WhyDeployDesktopClient.Views.ApplicationPage"
+             x:DataType="viewModels:ApplicationPageViewModel">
+
+    <Control.Styles>
+        <StyleInclude Source="/Styles/BorderStyles.axaml" />
+        <StyleInclude Source="/Styles/CommonLayoutStyles.axaml" />
+    </Control.Styles>
+    <Grid>
+        <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,*,*">
+            <Image Height="80" Source="../Assets/whyDeploy-logo.ico" />
+            <Panel Grid.Row="0" Grid.Column="1">
+                <Border Classes="NiceBorder">
+                    <Grid Name="MenuButtons" ColumnDefinitions="*,5,*">
+                        <Button Grid.Column="0" Content="Deploy" Classes="StretchCenterChildButton" />
+                        <Button Grid.Column="2" Content="Library" Classes="StretchCenterChildButton" />
+                    </Grid>
+                </Border>
+            </Panel>
+            <Label Grid.Row="1" Grid.Column="2" 
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Content="{Binding AppName}" />
+            <Panel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                <Grid Margin="60" RowDefinitions="*" ColumnDefinitions="*,50,*">
+                    <!-- <userControls:ModList Grid.Column="0" JobCollection="{Binding Jobs, Mode=TwoWay}"/> -->
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1" Margin="5,20" Spacing="50"
+                                Classes="NiceBorder">
+                        <!-- <fluentIcons:FluentIcon Iconsource="ArrowRight12Filled" /> -->
+                    </StackPanel>
+                    <!-- <userControls:ModList Grid.Column="2" /> -->
+                </Grid>
+            </Panel>
+        </Grid>
+    </Grid>
+</UserControl>

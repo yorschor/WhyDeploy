@@ -1,0 +1,29 @@
+---
+## Base Parameters
+Name: RedundancyTestingSetup
+ShortName: RedundancyTestingSetup
+JobId: 27866
+ResourceLocation:
+CustomBaseTargetLocation:
+
+## Variables
+ {{ BaseTargetLocation =  "C:\\Development\\Local_Testbed" }}
+ {{ ServiceSourcePath =  "C:\\Development\\REDACTED" }}
+ {{ ConfigPathName =  "deployed\\REDACTED.config" }}
+
+
+## Flow
+DeployOperations:
+    - Delete:
+          Target: {{ BaseTargetLocation }}\REDACTED
+
+    - Copy:
+          From: {{ ServiceSourcePathDebug }}
+          To: {{ BaseTargetLocation }}REDACTED\deployed
+
+    - ReplaceString:
+          Target: {{ BaseTargetLocation }}REDACTED\{{ ConfigPathName }}
+          OldString: ##INSTANCENAME##
+          NewString: REDACTED
+
+PurgeOperations: 

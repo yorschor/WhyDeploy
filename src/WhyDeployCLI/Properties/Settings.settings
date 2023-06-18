@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WhyDeployCLI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AppStoragePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/WhyDeploy/config-storage/WhyDeployAppStorage.json</Value>
+    </Setting>
+    <Setting Name="CurrentApp" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
+
