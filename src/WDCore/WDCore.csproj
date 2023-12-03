@@ -25,8 +25,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\WDBase\WDBase.csproj"/>
-        <ProjectReference Include="..\WDUtility\WDUtility.csproj"/>
+        <ProjectReference Include="..\WDBase\WDBase.csproj" PrivateAssets="all"/>
+        <ProjectReference Include="..\WDUtility\WDUtility.csproj" PrivateAssets="all"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <None Include="bin/$(Configuration)/$(TargetFramework)/WD*.dll" Pack="true" PackagePath="lib/$(TargetFramework)"/>
     </ItemGroup>
 
     <ItemGroup>
