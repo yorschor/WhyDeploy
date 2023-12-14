@@ -29,9 +29,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\WDBase\WDBase.csproj" />
-        <ProjectReference Include="..\WDCore\WDCore.csproj"/>
-        <ProjectReference Include="..\WDUtility\WDUtility.csproj" />
+        <ProjectReference Include="..\WDBase\WDBase.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\WDCore\WDCore.csproj" PrivateAssets="All"/>
+        <ProjectReference Include="..\WDUtility\WDUtility.csproj" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
