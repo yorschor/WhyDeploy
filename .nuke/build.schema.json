@@ -83,7 +83,9 @@
               "Clean",
               "Compile",
               "CreateCliRelease",
+              "CreateWDCoreNuget",
               "DeployCliLocal",
+              "Release",
               "Restore"
             ]
           }
@@ -101,7 +103,9 @@
               "Clean",
               "Compile",
               "CreateCliRelease",
+              "CreateWDCoreNuget",
               "DeployCliLocal",
+              "Release",
               "Restore"
             ]
           }

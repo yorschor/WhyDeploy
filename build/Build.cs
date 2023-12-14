@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Linq;
+using JetBrains.Annotations;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
+using Nuke.Common.Tools.MSBuild;
+using Nuke.Common.Tools.NuGet;
 using static Nuke.Common.IO.FileSystemTasks;
 
 class Build : NukeBuild
@@ -64,19 +67,25 @@ class Build : NukeBuild
     #endregion
 
     #region Helper
+
+    bool GetProjectRec(string name, out Project project)
+    {
+        try
+        {
+            project = Solution.AllProjects.First(x => x.Name == name);
+            return true;
+        }
+        catch
+        {
+            project = null;
+            return false;
+        }
+    }
     void BuildModules(IEnumerable<string> modules)
     {
         foreach (var moduleName in modules)
         {
-            Project project;
-            try
-            {
-                project = Solution.AllProjects.First(x => x.Name == moduleName);
-            }
-            catch
-            {
-                continue;
-            }
+            if (!GetProjectRec(moduleName, out var project)) continue;
             DotNetTasks.DotNetPublish(s => s
                 .SetProject(project.Path)
                 .SetConfiguration(Configuration)
@@ -84,6 +93,7 @@ class Build : NukeBuild
                 .SetRuntime(RuntimeIdentifier)
                 .SetVersionPrefix(Version)
                 .SetVersionSuffix(VersionSuffix));
+
         }
     }
 
@@ -135,7 +145,7 @@ class Build : NukeBuild
     
     #endregion
     
-    #region CreateRelease
+    #region CreateCliRelease
 
     AbsolutePath OutDirectory => RootDirectory / "out";
     AbsolutePath DeployDirectory => OutDirectory / "active";
@@ -168,6 +178,38 @@ class Build : NukeBuild
                 OutDirectory / $"WhyDeployCLI_{Version + VersionSuffix}.zip",
                 CompressionLevel.SmallestSize,
                 false);
+        });
+
+    #endregion
+
+    #region GenerateNugetPackages
+
+    Target CreateWDCoreNuget => t => t
+        .Executes(() =>
+        {
+            const string projectName = "WDCore";
+            if (!GetProjectRec(projectName, out var project)) return;
+            DotNetTasks.DotNetPack(s => s
+                .SetProject(project.Path)
+                .SetForce(true)
+                .SetConfiguration(Configuration)
+                .SetOutputDirectory(OutDirectory)
+                .SetVersion(Version)
+                .SetVersionPrefix(Version)
+                .SetVersionSuffix(VersionSuffix)
+            );
+        });
+
+    #endregion
+
+    #region Release
+
+    Target Release => t => t
+        .Triggers(CreateWDCoreNuget)
+        .Triggers(CreateCliRelease)
+        .Executes(() =>
+        {
+            Console.WriteLine("Release DONE");
         });
 
     #endregion
