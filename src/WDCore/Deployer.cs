@@ -79,13 +79,10 @@ public class Deployer
 
             if (deserializationResult.Failure)
             {
-                if (deserializationResult is IErrorResult errorResult)
+                if (deserializationResult is IErrorResult errorResult && printOutput)
                 {
-                    if (printOutput)
-                        Logger.Error($"Error deserializing job at {jobPath}: {errorResult.Message}");
-                    foreach (var error in errorResult.Errors)
-                        if (printOutput)
-                            Logger.Error($"{error.Code}: {error.Details}");
+                    Logger.Error($"Error deserializing job at {jobPath}: {errorResult.Message}");
+                    errorResult.PrintAll();
                 }
 
                 continue; // Skip this iteration and move to the next file.
