@@ -25,8 +25,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\WDBase\WDBase.csproj" PrivateAssets="all"/>
-        <ProjectReference Include="..\WDUtility\WDUtility.csproj" PrivateAssets="all"/>
+        <ProjectReference Include="..\WDBase\WDBase.csproj" PrivateAssets="All"/>
+        <ProjectReference Include="..\WDUtility\WDUtility.csproj" PrivateAssets="All"/>
     </ItemGroup>
     
     <ItemGroup>

@@ -21,7 +21,7 @@ public class Deployer
 
     public Deployer(string appConfigPath = "DeployAppConfig.json")
     {
-        LoadModules();
+        ModuleLoader.LoadModules("modules");
         var json = File.ReadAllText(appConfigPath);
         WDJobs = new WDJobCollection();
 
@@ -39,14 +39,7 @@ public class Deployer
         _currentContext = _context;
         SetUp();
     }
-
-    public void LoadModules(string path = "./../modules")
-    {
-        path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path); 
-        var loader = new ModuleLoader(path);
-        loader.LoadModules();
-    }
-
+    
     public WDJobCollection WDJobs { get; }
 
     public event EventHandler<OperationResultEventArgs>? OperationCompleted;

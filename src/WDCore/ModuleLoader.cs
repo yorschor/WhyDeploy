@@ -6,6 +6,13 @@ namespace WDCore;
 
 public class ModuleLoader
 {
+
+    public static IEnumerable<BaseOperation> LoadModules(string pathToModules)
+    {
+        pathToModules = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, pathToModules); 
+        var loader = new ModuleLoader(pathToModules);
+        return loader.LoadModules();
+    }
     private readonly string _moduleFolder;
 
     public ModuleLoader(string moduleFolder)
