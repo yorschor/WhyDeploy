@@ -30,7 +30,7 @@ public record struct DeployJob(
     {
         if (operations is not BaseOperation[] baseOperations) return string.Empty;
 
-        if (!baseOperations.Any()) return string.Empty;
+        if (baseOperations.Length == 0) return string.Empty;
         var sb = new StringBuilder();
         foreach (var o in baseOperations) sb.Append(o);
 
