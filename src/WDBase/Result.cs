@@ -75,20 +75,14 @@ public class ErrorResult<T> : Result<T>, IErrorResult
     public IReadOnlyCollection<Error> Errors { get; }
 }
 
-public class Error
+public class Error(string code, string details)
 {
     public Error(string details) : this(null!, details)
     {
     }
 
-    public Error(string code, string details)
-    {
-        Code = code;
-        Details = details;
-    }
-
-    public string Code { get; }
-    public string Details { get; }
+    public string Code { get; } = code;
+    public string Details { get; } = details;
 }
 
 public interface IErrorResult
