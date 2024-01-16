@@ -1,6 +1,6 @@
 ﻿using ReactiveUI;
 
-namespace WhyDeployClient.ViewModels;
+namespace WhyDeployClient.Base;
 
 public class ViewModelBase : ReactiveObject
 {

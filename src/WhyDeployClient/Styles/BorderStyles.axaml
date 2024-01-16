@@ -17,7 +17,7 @@
     <Style Selector="Border.NiceBorder">
         <Setter Property="Margin" Value="10" />
         <Setter Property="CornerRadius" Value="10" />
-        <Setter Property="BorderThickness" Value="0.5" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="DimGray" />
     </Style>
     <Style Selector="Border.NiceBorder > Control">

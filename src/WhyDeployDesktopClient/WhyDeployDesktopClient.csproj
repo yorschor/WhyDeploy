@@ -59,4 +59,14 @@
     <ItemGroup>
         <ProjectReference Include="..\WDCore\WDCore.csproj"/>
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Assets\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Styles\BorderStyles.axaml" />
+      <UpToDateCheckInput Remove="Styles\CommonLayoutStyles.axaml" />
+      <UpToDateCheckInput Remove="Styles\LabelStyles.axaml" />
+    </ItemGroup>
 </Project>

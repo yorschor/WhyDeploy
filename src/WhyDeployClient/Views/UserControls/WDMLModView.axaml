@@ -1,0 +1,33 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="400"
+             x:Class="WhyDeployClient.Views.UserControls.WDMLModView">
+
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/BorderStyles.axaml" />
+        <Style Selector="Border.NiceBorder Label">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="Arial Rounded MT" />
+        </Style>
+        <Style Selector="GridSplitter">
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>
+    </UserControl.Styles>
+
+
+    <Grid RowDefinitions="2*,5,*" ColumnDefinitions="2*,5,*">
+        <TextBlock x:Name="Description" Grid.Row="0" Grid.Column="0" />
+        <GridSplitter Grid.Row="0" Grid.Column="1" ResizeDirection="Columns" />
+        <Rectangle x:Name="StepsDisplay" Grid.Row="0" Grid.Column="2" Fill="Aqua" />
+        <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ResizeDirection="Rows" />
+        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                Classes="NiceBorder">
+            <Rectangle Fill="Brown" />
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,77 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:asg="clr-namespace:SpacedGridControl.Avalonia;assembly=SpacedGridControl.Avalonia"
+             xmlns:pages="clr-namespace:WhyDeployClient.ViewModels.Pages"
+             xmlns:rxui="http://reactiveui.net"
+             xmlns:viewLocators="clr-namespace:WhyDeployClient.ViewLocators"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="WhyDeployClient.Views.Pages.WDMLApplicationPage"
+             x:DataType="pages:WDMLApplicationPageViewModel">
+    <Control.Styles>
+        <Style Selector="asg|SpacedGrid">
+            <Setter Property="ShowGridLines" Value="True" />
+        </Style>
+        <Style Selector="Button.AppButton">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </Control.Styles>
+    <Border Classes="NiceBorder" Margin="15,30,15,15">
+        <asg:SpacedGrid RowDefinitions="Auto,*,Auto">
+            <asg:SpacedGrid x:Name="Header" Grid.Row="0"
+                            ColumnDefinitions="*,2*,*">
+                <asg:SpacedGrid Grid.Column="0" x:Name="SmallInfoBox" />
+                <Image Grid.Column="1" x:Name="AppTitle" />
+                <Label Grid.Column="1" x:Name="AppLogo" Classes="H1" HorizontalAlignment="Center"
+                       Content="{Binding Header}" />
+                <asg:SpacedGrid x:Name="AppButtons" Grid.Column="2"
+                                Margin="10"
+                                ColumnDefinitions="*,*,*">
+                    <Button Grid.Column="0" Content="▶️" Classes="AppButton" />
+                    <Button Grid.Column="1" Content="⚙️" Classes="AppButton" />
+                    <Button Grid.Column="2" Content="ℹ️" Classes="AppButton" />
+                </asg:SpacedGrid>
+            </asg:SpacedGrid>
+            <asg:SpacedGrid x:Name="Body" Grid.Row="1"
+                            ColumnDefinitions="*,3*">
+                <Border Grid.Column="0" Classes="NiceBorder">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListBox
+                            ItemsSource="{Binding ModSource}"
+                            Padding="10"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedMod}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <asg:SpacedGrid RowDefinitions="*, Auto"
+                                                    ColumnDefinitions="*, *,*">
+                                        <Label Grid.Row="0" Grid.Column="0" Content="{Binding Name}" />
+                                        <Label Grid.Row="1" Grid.Column="0" />
+                                        <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
+                                    </asg:SpacedGrid>
+
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+                </Border>
+                <Border Grid.Column="1" Classes="NiceBorder">
+                    <rxui:RoutedViewHost Router="{Binding Router}">
+                        <rxui:RoutedViewHost.DefaultContent>
+                            <TextBlock Text="Default content"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </rxui:RoutedViewHost.DefaultContent>
+                        <rxui:RoutedViewHost.ViewLocator>
+                            <viewLocators:WDMLModViewLocator />
+                        </rxui:RoutedViewHost.ViewLocator>
+                    </rxui:RoutedViewHost>
+                </Border>
+            </asg:SpacedGrid>
+            <asg:SpacedGrid x:Name="Footer" Grid.Row="2" />
+        </asg:SpacedGrid>
+    </Border>
+
+</UserControl>

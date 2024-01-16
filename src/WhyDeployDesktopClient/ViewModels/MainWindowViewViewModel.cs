@@ -113,6 +113,12 @@ public class MainWindowViewViewModel : ViewModelBase
 
 public class AppPageNavItem : NavigationViewItem
 {
+    public AppPageNavItem(string toolTip, PageViewModel vm)
+    {
+        ToolTip = toolTip;
+        Vm = vm;
+    }
+
     public string ToolTip { get; set; }
     public PageViewModel Vm { get; set; }
 }

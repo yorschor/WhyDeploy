@@ -1,5 +1,4 @@
 ﻿using Avalonia.Controls;
-
 namespace WhyDeployClient.Views;
 
 public partial class MainView : UserControl
@@ -8,4 +7,5 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
     }
+
 }

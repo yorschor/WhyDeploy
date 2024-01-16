@@ -5,7 +5,7 @@ using Avalonia.ReactiveUI;
 
 namespace WhyDeployClient.Desktop;
 
-class Program
+internal static class Program
 {
     // Initialization code. Don't use any Avalonia, third-party APIs or any
     // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
@@ -19,6 +19,9 @@ class Program
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
+            .With(new Win32PlatformOptions { OverlayPopups = true, })
+            .With(new X11PlatformOptions { OverlayPopups = true })
+            .With(new MacOSPlatformOptions { ShowInDock = true })
             .LogToTrace()
             .UseReactiveUI();
 }

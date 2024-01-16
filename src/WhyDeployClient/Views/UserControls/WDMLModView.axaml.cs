@@ -1,27 +1,28 @@
 ﻿using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Media;
 using WDBase.Models;
+using WhyDeployClient.Base;
+using WhyDeployClient.ViewModels.UserControls;
 
-namespace WhyDeployDesktopClient.UserControls;
+namespace WhyDeployClient.Views.UserControls;
 
-public partial class DeployableMod : UserControl
+public partial class WDMLModView : BaseControl<WDMLModViewModel>
 {
     public static readonly StyledProperty<ImageDrawing> ModImageProperty =
-        AvaloniaProperty.Register<DeployableMod, ImageDrawing>(nameof(ModImage));
+        AvaloniaProperty.Register<WDMLModView, ImageDrawing>(nameof(ModImage));
 
     public static readonly StyledProperty<string> ModNameProperty =
-        AvaloniaProperty.Register<DeployableMod, string>(nameof(ModName));
+        AvaloniaProperty.Register<WDMLModView, string>(nameof(ModName));
 
     public static readonly StyledProperty<string> ModInstanceProperty =
-        AvaloniaProperty.Register<DeployableMod, string>(nameof(ModInstance));
+        AvaloniaProperty.Register<WDMLModView, string>(nameof(ModInstance));
 
-    public DeployableMod()
+    public WDMLModView()
     {
         InitializeComponent();
     }
 
-    public DeployableMod(DeployJob job)
+    public WDMLModView(DeployJob job)
     {
         InitializeComponent();
         ModName = job.Name;
