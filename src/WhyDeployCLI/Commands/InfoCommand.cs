@@ -1,5 +1,8 @@
+using System.Reflection;
 using Spectre.Console;
 using Spectre.Console.Cli;
+using WDBase;
+using WDCore;
 
 #pragma warning disable CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -70,6 +73,17 @@ public class InfoCommand : Command<InfoCommand.Settings>
         var root = new Tree("");
         root.AddNode("[bold]AppConfig Path:[/]").AddNode(BaseCommandSettings.AppStoragePath);
         root.AddNode("[bold]Current app:[/]").AddNode(BaseCommandSettings.CurrentAppName);
+        // Add a node for BaseOperation derived classes
+        var baseOperationNode = root.AddNode("[bold]Available Modules:[/]");
+        
+        // Filter assemblies that start with "WDO"
+        ModuleLoader.LoadModules("modules");
+        var wdoAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.GetName().Name.StartsWith("WDO"));
+
+        foreach (var assembly in wdoAssemblies)
+        {
+            baseOperationNode.AddNode(assembly.GetName().Name);
+        }
         return root;
     }
 

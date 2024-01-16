@@ -6,7 +6,6 @@
         <Nullable>enable</Nullable>
         <Configurations>Debug;Release</Configurations>
         <Platforms>AnyCPU;x64</Platforms>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Ekkehard C. Damisch</Authors>
         <Copyright>Ekkehard C. Damisch</Copyright>
         <Version>0.2.0</Version>
@@ -25,8 +24,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\WDBase\WDBase.csproj"/>
-        <ProjectReference Include="..\WDUtility\WDUtility.csproj"/>
+        <ProjectReference Include="..\WDBase\WDBase.csproj" PrivateAssets="All"/>
+        <ProjectReference Include="..\WDUtility\WDUtility.csproj" PrivateAssets="All"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <None Include="bin/$(Configuration)/$(TargetFramework)/WD*.dll" Pack="true" PackagePath="lib/$(TargetFramework)"/>
     </ItemGroup>
 
     <ItemGroup>
